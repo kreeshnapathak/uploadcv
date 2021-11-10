@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+{% comment %} {% load myfilter %} {% endcomment %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="{% static 'myapp/css/bootstrap.css' %}">
+</head>
+<body>
+{% for fm in form %}
+    <h1 class = 'alert-success text-center p-3'>Resume Details of {{fm.name}}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+            <h1></h1>
+            </div>
+            
+            <div class="col-sm-8 text-center shadow p-5">
+            {% comment %} <h1 class= 'mt-5 text-center'><u> </u></h1> {% endcomment %}
+            <p class='text-center'><img src="{{fm.profile_image.url}}" alt="image" 
+            class="img-fluid img-thumbnail mt-4" style="border-radius: 50%"/
+            width = '150' height='150'></p>
+
+            <table class="table mt-5">
+            <thead>
+            <tr>
+             <th scope="col">Name:</th>
+             <th scope="col">{{fm.name}}</th> 
+            </tr>
+             </thead>
+             <tbody>
+             <tr>
+            <td>Date of Birth:</td>
+            <td>{{fm.dob}}</td>
+            </tr>
+             <tr>
+            <td>Gender:</td>
+            <td>{{fm.gender}}</td>
+            </tr>
+            <td>Locality:</td>
+            <td>{{fm.locality}}</td>
+            </tr>
+            <td>City:</td>
+            <td>{{fm.city}}</td>
+            </tr>
+            <td>Pin:</td>
+            <td>{{fm.pin}}</td>
+            </tr>
+            <td>State:</td>
+            <td>{{fm.state}}</td>
+            </tr>
+            <td>Mobile:</td>
+            <td>{{fm.mobile}}</td>
+            </tr>
+            <td>Email:</td>
+            <td>{{fm.email}}</td>
+            </tr>
+            <td>Preffered City:</td>
+            <td>{{fm.job_city}}</td>
+            </tr>
+            <td>Attachment:</td>
+            
+            <td><a href="{{fm.my_file.url}}">Download</a></td>
+            </tr>
+            </tbody>
+            </table>
+
+            </div>
+            {% endfor %}
+            <div class="col-sm-2">
+            <h1></h1>
+            </div>
+    
+        </div>
+    </div>
+
+    <script src="{% static 'myapp/js/jquery.js' %}"></script>
+    <script src="{% static 'myapp/js/popper.js' %}"></script>
+    <script src="{% static 'myapp/js/bootstrap.js' %}"></script> 
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>   
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload your CV</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'myapp/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %%}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+</head>
+<body>
+    
+    <h1 class = 'alert-success text-center p-3'>Resume Uploader</h1>
+    
+    <div class="container mb-5">   
+        <div class="row">
+            <div class="col-sm-7">
+                <form action="" method ='POST' enctype="multipart/form-data" class='shadow p-5'> 
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {% for fm in form %}
+                <div class='form-group'>
+                {{fm.label_tag}}{{fm}}{{fm.errors|striptags}}<br>
+                {% for error in field.errors %}
+                <span class='errorlist'>{{error}}</span>
+                {% endfor %}
+                </div>
+                {% endfor %}
+            
+                {% comment %} {{form.as_p}} {% endcomment %}
+                <input type="submit" value="submit">
+                </form>
+            </div> 
+
+            <div class="col-sm-5">
+                <h1 class= 'text-center mb-3'><u>List of Candidates</u></h1>
+              <div class='text-center'>
+                {% for dt in data %}
+              
+               {{forloop.counter}}. <a href={% url "details" dt.id %}> {{dt.name}}<br> </a>
+                {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div> 
+    
+    
+    <script src="{% static 'myapp/js/jquery.js' %}"></script>
+    <script src="{% static 'myapp/js/popper.js' %}"></script>
+    <script src="{% static 'myapp/js/bootstrap.js' %}"></script> 
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+     <script>
+       $( function() {
+         $( "#datepicker" ).datepicker();
+        } );
+  </script>
+    
+</body>
+</html>
